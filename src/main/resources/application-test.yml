@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  main:
+    allow-bean-definition-overriding: true
+
+jwt:
+  secret: bXktc3VwZXItc2VjcmV0LWtleS1mb3Itand0LWF1dGg=
+  expiration-in-minutes: 60
+
+app:
+  loans:
+    max-active: 3
+    loan-days: 7
