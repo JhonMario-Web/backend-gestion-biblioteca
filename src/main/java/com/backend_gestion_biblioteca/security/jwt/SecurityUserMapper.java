@@ -16,7 +16,7 @@ public class SecurityUserMapper {
                 .password(usuario.getClave())
                 .disabled(!usuario.isActivo())
                 .authorities(usuario.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getNombre()))
+                        .map(role -> new SimpleGrantedAuthority(role.getNombre()))
                         .collect(Collectors.toSet()))
                 .build();
     }

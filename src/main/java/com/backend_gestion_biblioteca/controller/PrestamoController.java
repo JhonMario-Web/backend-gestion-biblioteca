@@ -23,19 +23,19 @@ public class PrestamoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN','LIBRARIAN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_LIBRARIAN')")
     public ResponseEntity<PrestamoResponse> crearPrestamo(@Valid @RequestBody PrestamoRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(prestamoService.crearPrestamo(request));
     }
 
     @PutMapping("/{id}/retornar-libro")
-    @PreAuthorize("hasAnyRole('ADMIN','LIBRARIAN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_LIBRARIAN')")
     public ResponseEntity<PrestamoResponse> retonarLibro(@PathVariable Long id) {
         return ResponseEntity.ok(prestamoService.retonarLibro(id));
     }
 
     @GetMapping
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_LIBRARIAN')")
     public ResponseEntity<PaginaResponse<PrestamoResponse>> listarPrestamos(@RequestParam(defaultValue = "0") int page,
                                                                     @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
